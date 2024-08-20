@@ -515,7 +515,7 @@ void FeatureManager::triangulateLine(Vector3d Ps[], Matrix3d Rs_estimate[], Vect
 
     int index = -1;
 
-    cvtColor(img, img, CV_GRAY2BGR);
+    cvtColor(img, img, cv::COLOR_GRAY2BGR);
     for(auto &it_per_id : line_feature)
     {
         it_per_id.used_num = it_per_id.line_feature_per_frame.size();

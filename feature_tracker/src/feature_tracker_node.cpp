@@ -312,7 +312,7 @@ void img_callback(const sensor_msgs::ImageConstPtr &img_msg)
             cv::Mat stereo_img = ptr->image;
             ptr_img = cv_bridge::cvtColor(ptr, sensor_msgs::image_encodings::BGR8);
             ptr_img->image = lineTrackerData.forw_img.clone();
-            cv::cvtColor(ptr_img->image, ptr_img->image, CV_GRAY2RGB);
+            cv::cvtColor(ptr_img->image, ptr_img->image, cv::COLOR_GRAY2RGB);
             pub_latest_img.publish(ptr_img->toImageMsg());
 
 //            imshow("1", ptr_img->image);
@@ -321,10 +321,10 @@ void img_callback(const sensor_msgs::ImageConstPtr &img_msg)
             for (int i = 0; i < NUM_OF_CAM; i++)
             {
                 cv::Mat tmp_img = stereo_img.rowRange(i * ROW, (i + 1) * ROW);
-                cv::cvtColor(show_img, tmp_img, CV_GRAY2RGB);
+                cv::cvtColor(show_img, tmp_img, cv::COLOR_GRAY2RGB);
                 ptr_line = cv_bridge::cvtColor(ptr, sensor_msgs::image_encodings::BGR8);
                 ptr_line->image = lineTrackerData.forw_img.clone();
-                cv::cvtColor(ptr_line->image, ptr_line->image, CV_GRAY2RGB);
+                cv::cvtColor(ptr_line->image, ptr_line->image, cv::COLOR_GRAY2RGB);
 
                 for (unsigned int j = 0; j < trackerData[i].cur_pts.size(); j++)
                 {

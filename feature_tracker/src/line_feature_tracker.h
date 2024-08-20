@@ -25,7 +25,8 @@
 
 #include "math.h"
 #include "utility.h"
-#include "highgui.h"
+// #include "highgui.h"
+#include <opencv2/highgui.hpp> 
 #include "ELSED.h"
 
 using namespace std;

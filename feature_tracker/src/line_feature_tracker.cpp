@@ -49,9 +49,9 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
     Mat img1 = curr_img.clone();
     Mat img2 = forw_img.clone();
     Mat merged_img;
-    cvtColor(img1, img1, CV_GRAY2BGR);
-    cvtColor(img2, img2, CV_GRAY2BGR);
-//    cvtColor(merged_img, merged_img, CV_GRAY2BGR);
+    cvtColor(img1, img1, cv::COLOR_GRAY2BGR);
+    cvtColor(img2, img2, cv::COLOR_GRAY2BGR);
+//    cvtColor(merged_img, merged_img, cv::COLOR_GRAY2BGR);
 
     vector<Vector3d> para_vector;
     vector<double> length_vector;
@@ -95,7 +95,7 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
 //            const int model_size = 500;
 //            vector<Point2f> model_hypotheses;
 //            Mat tmp_img = forw_img.clone();
-//            cvtColor(forw_img, tmp_img, CV_GRAY2BGR);
+//            cvtColor(forw_img, tmp_img, cv::COLOR_GRAY2BGR);
 
 //            while(model_hypotheses.size() < model_size)
 //            {
@@ -316,7 +316,7 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
 //        imwrite(a, tmp_img);
 
 //        tmp_img = forw_img.clone();
-//        cvtColor(forw_img, tmp_img, CV_GRAY2BGR);
+//        cvtColor(forw_img, tmp_img, cv::COLOR_GRAY2BGR);
 
 //        for ( int i=0; i<forw_keyLine.size(); ++i )
 //        {
@@ -324,7 +324,7 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
 //            cv::Point2f pt_s = forw_keyLine[i].getStartPoint();
 //            cv::Point2f pt_e = forw_keyLine[i].getEndPoint();
 
-//            cv::line( tmp_img, pt_s, pt_e, cv::Scalar(0,0,0), 2, CV_AA );
+//            cv::line( tmp_img, pt_s, pt_e, cv::Scalar(0,0,0), 2, cv::LINE_AA );
 //        }
 
 //        std::vector<cv::Scalar> lineColors( 3 );
@@ -339,7 +339,7 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
 
 //                cv::Point2f pt_s = forw_keyLine[idx].getStartPoint();
 //                cv::Point2f pt_e = forw_keyLine[idx].getEndPoint();
-//                cv::line( tmp_img, pt_s, pt_e, lineColors[i], 2, CV_AA );
+//                cv::line( tmp_img, pt_s, pt_e, lineColors[i], 2, cv::LINE_AA );
 //            }
 //        }
 //        a = "/home/hyunjun/image/" + to_string(image_id) + "_manhattan" +".png";
@@ -480,7 +480,7 @@ void LineFeatureTracker::readImage4Line(const Mat &_img, double _cur_time)
         }
 
         Mat tmp_img = curr_img.clone();
-        cvtColor(curr_img, tmp_img, CV_GRAY2BGR);
+        cvtColor(curr_img, tmp_img, cv::COLOR_GRAY2BGR);
 
         ids.clear();
         track_cnt.clear();
@@ -564,8 +564,8 @@ void LineFeatureTracker::lineMatching( vector<LineKL> &_prev_keyLine, vector<Lin
 //    cv::Mat scaled1, scaled2;
 //    std::vector<char> mask( matches.size(), 1 );
 //    Mat pre_img, cur_img;
-//    cvtColor(curr_img, pre_img, CV_GRAY2BGR);
-//    cvtColor(forw_img, cur_img, CV_GRAY2BGR);
+//    cvtColor(curr_img, pre_img, cv::COLOR_GRAY2BGR);
+//    cvtColor(forw_img, cur_img, cv::COLOR_GRAY2BGR);
 //    drawLineMatches( pre_img, lbd_octave1, cur_img, lbd_octave2, good_matches, outImg, Scalar::all( -1 ), Scalar::all( -1 ), mask,
 //                       DrawLinesMatchesFlags::DEFAULT );
 //    imshow( "Matches", outImg );
@@ -627,7 +627,7 @@ void LineFeatureTracker::lineMergingTwoPhase( Mat &prev_img, Mat &cur_img, vecto
     imageheight = cur_img.rows;
     Mat line_mask = Mat::zeros(imageheight, imagewidth, CV_8UC1);
     Mat temp_img = cur_img.clone();
-    cvtColor(temp_img, temp_img, CV_GRAY2BGR);
+    cvtColor(temp_img, temp_img, cv::COLOR_GRAY2BGR);
     for(int i = 0; i < prev_keyLine.size(); i++)
     {
         line(line_mask, prev_keyLine.at(i).getStartPoint(), prev_keyLine.at(i).getEndPoint(), 255);
@@ -727,8 +727,8 @@ void LineFeatureTracker::lineMergingTwoPhase( Mat &prev_img, Mat &cur_img, vecto
 
     Mat img1 = cur_img.clone();
     Mat img2 = cur_img.clone();
-    cvtColor(img1, img1, CV_GRAY2BGR);
-    cvtColor(img2, img2, CV_GRAY2BGR);
+    cvtColor(img1, img1, cv::COLOR_GRAY2BGR);
+    cvtColor(img2, img2, cv::COLOR_GRAY2BGR);
 
 
     if(line_distribution == 2)
@@ -856,7 +856,7 @@ void LineFeatureTracker::lineMergingTwoPhase( Mat &prev_img, Mat &cur_img, vecto
     }
 
     Mat img_line = forw_img.clone();
-    cvtColor(img_line, img_line, CV_GRAY2RGB);
+    cvtColor(img_line, img_line, cv::COLOR_GRAY2RGB);
 
     // remove duplicate points
     vector<DMatch>::iterator it_good_match_train = predict_inlier_vector.begin();
@@ -959,8 +959,8 @@ void LineFeatureTracker::lineExtraction( Mat &cur_img, vector<LineKL> &keyLine, 
 //    cout<< t_r.toc() << endl;
 //    cout << t1 << " , " << t2 << endl;
 //    Mat tmp_img1, tmp_img2;
-//    cvtColor(forw_img, tmp_img1, CV_GRAY2BGR);
-//    cvtColor(forw_img, tmp_img2, CV_GRAY2BGR);
+//    cvtColor(forw_img, tmp_img1, cv::COLOR_GRAY2BGR);
+//    cvtColor(forw_img, tmp_img2, cv::COLOR_GRAY2BGR);
 //    for(int i = 0; i < forw_keyLine.size(); i++)
 //        line(tmp_img1, forw_keyLine[i].getStartPoint(), forw_keyLine[i].getEndPoint(), Scalar(0,255,0), 2);
 //    for(int i = 0; i < segs.size(); i++)
@@ -1001,8 +1001,8 @@ void LineFeatureTracker::lineExtraction( Mat &cur_img, vector<LineKL> &keyLine, 
 //    Mat img1 = cur_img.clone();
 //    Mat img2 = cur_img.clone();
 
-//    cvtColor(img1, img1, CV_GRAY2BGR);
-//    cvtColor(img2, img2, CV_GRAY2BGR);
+//    cvtColor(img1, img1, cv::COLOR_GRAY2BGR);
+//    cvtColor(img2, img2, cv::COLOR_GRAY2BGR);
 //    for(auto &it : keyLine)
 //        line(img1, it.getStartPoint(), it.getEndPoint(),Scalar(rand()%255,rand()%255,rand()%255), 2);
 
@@ -1925,8 +1925,8 @@ void LineFeatureTracker::OpticalFlowExtraction(Mat &prev_img, Mat &cur_img,
     Mat merged_img;
     Mat image = cur_img.clone();
     Mat canny = canny_img.clone();
-    cvtColor(image, image, CV_GRAY2BGR);
-    cvtColor(canny, canny, CV_GRAY2BGR);
+    cvtColor(image, image, cv::COLOR_GRAY2BGR);
+    cvtColor(canny, canny, cv::COLOR_GRAY2BGR);
     drawKeylines(image, cur_keyLine, image);
     hconcat(image, canny, merged_img);
     imshow("1111", merged_img);
@@ -2319,8 +2319,8 @@ void LineFeatureTracker::drawClusters( cv::Mat &img, std::vector<KeyLine> &lines
         cv::Point2f pt_e = lines[i].getEndPoint();
         cv::Point pt_m = ( pt_s + pt_e ) * 0.5;
 
-        cv::line( vp_img, pt_s, pt_e, cv::Scalar(0,0,0), 2, CV_AA );
-        cv::line( line_img, pt_s, pt_e, cv::Scalar(0,255,255), 2, CV_AA );
+        cv::line( vp_img, pt_s, pt_e, cv::Scalar(0,0,0), 2, cv::LINE_AA );
+        cv::line( line_img, pt_s, pt_e, cv::Scalar(0,255,255), 2, cv::LINE_AA );
     }
 
     for ( int i = 0; i < clusters.size(); ++i )
@@ -2333,7 +2333,7 @@ void LineFeatureTracker::drawClusters( cv::Mat &img, std::vector<KeyLine> &lines
             cv::Point2f pt_e = lines[idx].getEndPoint();
             cv::Point pt_m = ( pt_s + pt_e ) * 0.5;
 
-            cv::line( vp_img, pt_s, pt_e, lineColors[i], 2, CV_AA );
+            cv::line( vp_img, pt_s, pt_e, lineColors[i], 2, cv::LINE_AA );
         }
     }
     imshow("img", img);
